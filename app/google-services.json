@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "249082576296",
+    "firebase_url": "https://homeconsumption.firebaseio.com",
+    "project_id": "homeconsumption",
+    "storage_bucket": "homeconsumption.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:249082576296:android:95900c276e2a3f81e7319d",
+        "android_client_info": {
+          "package_name": "com.example.homeconsumption"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "249082576296-51d21pvsl8a0utr8hcmuo54q6dfrdk9n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBim_VudcwamaY0mpizff9YSoY5reovajY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "249082576296-51d21pvsl8a0utr8hcmuo54q6dfrdk9n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
