@@ -15,6 +15,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_main_agua.*
 import kotlinx.android.synthetic.main.activity_main_eletricidade.*
+import kotlinx.android.synthetic.main.activity_mensal_agua.*
 import kotlinx.android.synthetic.main.activity_mensal_eletricidade.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -43,7 +44,7 @@ class MensalEletricidade : AppCompatActivity() {
         val mes: String = month.format(Date())
         val dia: String = day.format(Date())
         val diaInt= dia.toInt();
-
+        var precoElemes =0f
         var maximo = 0f
         for (y in 1..31) {
             val luzMesRef: DatabaseReference =
@@ -98,7 +99,9 @@ class MensalEletricidade : AppCompatActivity() {
 
                     if (diaInt == y) {
                         if (somahoras != null) {
-                            eletricidadeAcumulado.text = somahoras.toString()
+                            eletricidadeAcumulado.text = "%.3f".format(somahoras)
+                            precoElemes = (somahoras * 0.1481).toFloat()
+                            textViewPrecoEleMensal.text = "%.2f".format(precoElemes)
                         }
                     }
 

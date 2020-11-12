@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.homeconsumption">
+    package="com.example.homeconsumption" >
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -10,10 +10,15 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".navDrawerActivity"
+            android:label="@string/title_activity_nav_drawer"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
         <activity
             android:name=".SettingsEletricidade"
-            android:label="@string/title_activity_settings_eletricidade"></activity>
+            android:label="@string/title_activity_settings_eletricidade" />
         <activity android:name=".MensalAgua" />
         <activity
             android:name=".MensalEletricidade"
@@ -34,7 +39,7 @@
         <activity
             android:name=".LoginActivity"
             android:label="HomeConsumption"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

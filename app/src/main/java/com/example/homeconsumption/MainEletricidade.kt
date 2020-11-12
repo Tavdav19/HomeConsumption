@@ -16,6 +16,7 @@ import com.github.mikephil.charting.data.BarEntry
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import kotlinx.android.synthetic.main.activity_main_agua.*
 import kotlinx.android.synthetic.main.activity_main_eletricidade.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -54,65 +55,64 @@ class MainEletricidade : AppCompatActivity() {
 
         val sdf = SimpleDateFormat("yyyy-MM-dd")
         val dia: String = sdf.format(Date())
-
-        var maximo=0f
+        val hour = SimpleDateFormat("HH")
+        val horaString: String = hour.format(Date())
+        val horaInt = horaString.toInt()
+        var maximo = 0f
+        var precoluz =0f
         for (y in 0..23) {
-            val luzRef: DatabaseReference = rootRef.child("Sensors/Power/"+dia+"/"+y)
-        luzRef.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                var mediaHora = dataSnapshot.getValue(Float::class.java)
+            val luzRef: DatabaseReference = rootRef.child("Sensors/Power/" + dia + "/" + y)
+            luzRef.addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    var mediaHora = dataSnapshot.getValue(Float::class.java)
+                    if (mediaHora != null) {
+                        entries.add(BarEntry(y.toFloat(), mediaHora.toString().toFloat()))
+                        maximo = maxOf(maximo, mediaHora)
+                    } else (entries.add(BarEntry(y.toFloat(), 0f)))
+                    val barDataSet = BarDataSet(entries, "")
+                    barDataSet.color = (WHITE)
+                    val data = BarData(barDataSet)
+                    barChart.data = data
+                    barChart.setTouchEnabled(false)
+                    barChart.getLegend().setEnabled(false)
+                    val description: Description = barChart.getDescription()
+                    description.setEnabled(false)
+                    val xAxis: XAxis = barChart.getXAxis()
+                    xAxis.position = XAxisPosition.BOTTOM
+                    xAxis.textSize = 10f
+                    xAxis.textColor = Color.WHITE
+                    xAxis.setDrawAxisLine(true)
+                    xAxis.setDrawGridLines(false)
+                    xAxis.setLabelCount(24, false)
+                    val leftAxis: YAxis = barChart.getAxisLeft()
+                    barChart.getAxisRight().setEnabled(false);
+                    leftAxis.setTextSize(10f)
+                    leftAxis.setAxisMinimum(0f)
+                    leftAxis.setAxisMaximum(maximo)
+                    leftAxis.setTextColor(Color.WHITE)
+                    leftAxis.setGranularity(1f)
+                    leftAxis.setLabelCount(11, true)
+                    barDataSet.setDrawValues(false)
+                    kWh.setVisibility(VISIBLE)
+                    horatext.setVisibility(VISIBLE)
+                    barChart.animateY(10)
 
-                if (mediaHora!=null){
-                    entries.add(BarEntry(y.toFloat(), mediaHora.toString().toFloat()))
-                    maximo = maxOf(maximo, mediaHora)
-                }else(entries.add(BarEntry(y.toFloat(), 0f)))
+                    if (horaInt == y) {
+                        if (mediaHora != null) {
+                            acumuladoEleHora.text = "%.3f".format(mediaHora)
+                            textViewAcuHoraEle.text= "Acumulado "+y+"H"
+                            precoluz = (mediaHora * 0.1481).toFloat()
+                            textViewPrecoLuz.text = "%.2f".format(precoluz)
+                        }
+                    }
+                }
 
-                val barDataSet = BarDataSet(entries, "")
-
-                    barDataSet.color=(WHITE)
-
-
-                val data = BarData(barDataSet)
-                barChart.data = data
-                barChart.setTouchEnabled(false)
-                barChart.getLegend().setEnabled(false)
-
-
-                val description: Description = barChart.getDescription()
-                description.setEnabled(false)
-
-                val xAxis: XAxis = barChart.getXAxis()
-                xAxis.position = XAxisPosition.BOTTOM
-                xAxis.textSize = 10f
-                xAxis.textColor = Color.WHITE
-                xAxis.setDrawAxisLine(true)
-                xAxis.setDrawGridLines(false)
-                xAxis.setLabelCount(24, false)
-
-                val leftAxis: YAxis = barChart.getAxisLeft()
-                barChart.getAxisRight().setEnabled(false);
-
-                leftAxis.setTextSize(10f); // set the text size
-                leftAxis.setAxisMinimum(0f); // start at zero
-
-                leftAxis.setAxisMaximum(maximo); // the axis maximum is 100
-                leftAxis.setTextColor(Color.WHITE);
-                leftAxis.setGranularity(1f); // interval 1
-                leftAxis.setLabelCount(11, true); // force 6 labels
-
-
-                barDataSet.setDrawValues(false)
-                kWh.setVisibility(VISIBLE)
-                horatext.setVisibility(VISIBLE)
-                barChart.animateY(10)
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-            }
-        })
-
+                override fun onCancelled(error: DatabaseError) {
+                }
+            })
+        }
             btnHistoricoEle.setOnClickListener {
                 startActivity(Intent(this, MensalEletricidade::class.java))
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
             }
-    }}}
+    }}

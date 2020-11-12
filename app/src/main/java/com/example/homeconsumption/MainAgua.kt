@@ -15,6 +15,7 @@ import com.github.mikephil.charting.data.BarEntry
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_main_agua.*
 import kotlinx.android.synthetic.main.activity_main_eletricidade.*
+import kotlinx.android.synthetic.main.activity_mensal_agua.*
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -37,17 +38,27 @@ class MainAgua : AppCompatActivity() {
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
         }
         // Read from the database
+            waterRef.addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    val value = dataSnapshot.getValue(Int::class.java)
+                    AguaAtual.text = value.toString()
+                }
 
+                override fun onCancelled(error: DatabaseError) {
+
+                }
+            })
 
 
 
 
         val sdf = SimpleDateFormat("yyyy-MM-dd")
         val dia: String = sdf.format(Date())
-        val hour = SimpleDateFormat("hh")
+        val hour = SimpleDateFormat("HH")
         val horaString: String = hour.format(Date())
         val horaInt = horaString.toInt()
         var maximo = 0f
+        var precoagua = 0f
         for (y in 0..23) {
             val aguaRef: DatabaseReference = rootRef.child("Sensors/Water/" + dia + "/" + y)
             aguaRef.addValueEventListener(object : ValueEventListener {
@@ -99,22 +110,29 @@ class MainAgua : AppCompatActivity() {
 
                     horatextView.setVisibility(View.VISIBLE)
                     textViewLitro.setVisibility(View.VISIBLE)
-            if(horaInt == y){
-                if (valorHora != null) {
 
-                if(valorHora >10){
-                    AguaAtual.text = "%.1f".format(valorHora)
-                }else{
-                    AguaAtual.text = "%.3f".format(valorHora)
-                }
+                    if (horaInt == y) {
+                        if (valorHora != null) {
+                            AcumuladoAguaHora.text = "%.3f".format(valorHora)
+                            textViewAcuHora.text= "Acumulado "+y+"H"
+                            precoagua = (valorHora * 0.001).toFloat()
+                            textViewPrecoAgua.text = "%.2f".format(precoagua)
+                        }
+                    }
 
-                if(valorHora <1){
-                    textViewLitroInst.text="ml"
-                    AguaAtual.text = "%.0f".format(valorHora * 1000)
-                }else{
-                    textViewLitroInst.text="Litro"
-                }
-            }}
+//                if(valorHora >10){
+//                    AguaAtual.text = "%.1f".format(valorHora)
+//                }else{
+//                    AguaAtual.text = "%.3f".format(valorHora)
+//                }
+//
+//                if(valorHora <1){
+//                    textViewLitroInst.text="ml"
+//                    AguaAtual.text = "%.0f".format(valorHora * 1000)
+//                }else{
+//                    textViewLitroInst.text="Litro"
+//                }
+
 
                 }
 
