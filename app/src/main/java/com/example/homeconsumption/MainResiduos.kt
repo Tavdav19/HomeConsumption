@@ -15,8 +15,9 @@ class MainResiduos : AppCompatActivity() {
     val rootRef: DatabaseReference = FirebaseDatabase.getInstance().reference
 
     // Database reference pointing to demo node
-    val residuosRef: DatabaseReference = rootRef.child("Sensors/Residuos")
-
+    val vidroRef: DatabaseReference = rootRef.child("Sensors/Waste/GlassInst")
+    val plasticoRef: DatabaseReference = rootRef.child("Sensors/Waste/PlasticInst")
+    val papelRef: DatabaseReference = rootRef.child("Sensors/Waste/PaperInst")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_residuos)
@@ -26,10 +27,32 @@ class MainResiduos : AppCompatActivity() {
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
         }
         // Read from the database
-        residuosRef.addValueEventListener(object : ValueEventListener {
+        vidroRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val value = dataSnapshot.getValue(Int::class.java)
-                ResiduosAtual.text = value.toString()
+                VidroAtual.text = value.toString()
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+        })
+        plasticoRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                val value = dataSnapshot.getValue(Int::class.java)
+                plasticoAtual.text = value.toString()
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+        })
+        papelRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                val value = dataSnapshot.getValue(Int::class.java)
+                papelAtual.text = value.toString()
 
             }
 

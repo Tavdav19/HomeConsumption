@@ -49,7 +49,7 @@
             app:srcCompat="@drawable/residuos" />
 
         <TextView
-            android:id="@+id/AguaAtual"
+            android:id="@+id/VidroAtual"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -71,9 +71,9 @@
             android:textAlignment="center"
             android:textColor="@color/colorPrimary"
             android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="@+id/AguaAtual"
-            app:layout_constraintStart_toEndOf="@+id/AguaAtual"
-            app:layout_constraintTop_toTopOf="@+id/AguaAtual" />
+            app:layout_constraintBottom_toBottomOf="@+id/VidroAtual"
+            app:layout_constraintStart_toEndOf="@+id/VidroAtual"
+            app:layout_constraintTop_toTopOf="@+id/VidroAtual" />
 
         <TextView
             android:id="@+id/textViewLitroInst3"
@@ -84,9 +84,9 @@
             android:textAlignment="center"
             android:textColor="@color/colorPrimary"
             android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="@+id/aguaAtual"
-            app:layout_constraintStart_toEndOf="@+id/AguaAtual"
-            app:layout_constraintTop_toTopOf="@+id/aguaAtual" />
+            app:layout_constraintBottom_toBottomOf="@+id/plasticoAtual"
+            app:layout_constraintStart_toEndOf="@+id/VidroAtual"
+            app:layout_constraintTop_toTopOf="@+id/plasticoAtual" />
 
         <TextView
             android:id="@+id/textViewLitroInst4"
@@ -97,9 +97,9 @@
             android:textAlignment="center"
             android:textColor="@color/colorPrimary"
             android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="@+id/aguaAtual2"
-            app:layout_constraintStart_toEndOf="@+id/AguaAtual"
-            app:layout_constraintTop_toTopOf="@+id/aguaAtual2" />
+            app:layout_constraintBottom_toBottomOf="@+id/papelAtual"
+            app:layout_constraintStart_toEndOf="@+id/VidroAtual"
+            app:layout_constraintTop_toTopOf="@+id/papelAtual" />
 
         <TextView
             android:id="@+id/textViewDicas"
@@ -112,7 +112,7 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/aguaAtual2" />
+            app:layout_constraintTop_toBottomOf="@+id/papelAtual" />
 
         <TextView
             android:id="@+id/textViewLitro"
@@ -122,11 +122,11 @@
             android:text="Litro"
             android:textColor="@color/colorPrimary"
             android:visibility="invisible"
-            app:layout_constraintBottom_toTopOf="@+id/barChartagua"
+            app:layout_constraintBottom_toTopOf="@+id/barChartlixo"
             app:layout_constraintStart_toStartOf="parent" />
 
         <com.github.mikephil.charting.charts.BarChart
-            android:id="@+id/barChartagua"
+            android:id="@+id/barChartlixo"
             android:layout_width="0dp"
             android:layout_height="250dp"
             android:layout_marginStart="8dp"
@@ -146,7 +146,7 @@
             android:textColor="@color/colorPrimary"
             android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/barChartagua" />
+            app:layout_constraintTop_toBottomOf="@+id/barChartlixo" />
 
         <Button
             android:id="@+id/btnHistoricoAgua"
@@ -160,7 +160,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/barChartagua" />
+            app:layout_constraintTop_toBottomOf="@+id/barChartlixo" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabAguaSettings"
@@ -178,7 +178,7 @@
             tools:ignore="VectorDrawableCompat" />
 
         <TextView
-            android:id="@+id/aguaAtual"
+            android:id="@+id/plasticoAtual"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -187,12 +187,12 @@
             android:textColor="#FFFFFF"
             android:textSize="35sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/AguaAtual"
-            app:layout_constraintStart_toStartOf="@+id/AguaAtual"
-            app:layout_constraintTop_toBottomOf="@+id/AguaAtual" />
+            app:layout_constraintEnd_toEndOf="@+id/VidroAtual"
+            app:layout_constraintStart_toStartOf="@+id/VidroAtual"
+            app:layout_constraintTop_toBottomOf="@+id/VidroAtual" />
 
         <TextView
-            android:id="@+id/aguaAtual2"
+            android:id="@+id/papelAtual"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -201,10 +201,10 @@
             android:textColor="#FFFFFF"
             android:textSize="35sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/AguaAtual"
+            app:layout_constraintEnd_toEndOf="@+id/VidroAtual"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/AguaAtual"
-            app:layout_constraintTop_toBottomOf="@+id/aguaAtual" />
+            app:layout_constraintStart_toStartOf="@+id/VidroAtual"
+            app:layout_constraintTop_toBottomOf="@+id/plasticoAtual" />
 
         <TextView
             android:id="@+id/textViewAcuHora4"
@@ -214,10 +214,10 @@
             android:textColor="#FFFFFF"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/AguaAtual"
-            app:layout_constraintEnd_toStartOf="@+id/AguaAtual"
+            app:layout_constraintBottom_toBottomOf="@+id/VidroAtual"
+            app:layout_constraintEnd_toStartOf="@+id/VidroAtual"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/AguaAtual" />
+            app:layout_constraintTop_toTopOf="@+id/VidroAtual" />
 
         <TextView
             android:id="@+id/textViewAcuHora5"
@@ -227,10 +227,10 @@
             android:textColor="#FFFFFF"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/aguaAtual"
-            app:layout_constraintEnd_toStartOf="@+id/AguaAtual"
+            app:layout_constraintBottom_toBottomOf="@+id/plasticoAtual"
+            app:layout_constraintEnd_toStartOf="@+id/VidroAtual"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/aguaAtual" />
+            app:layout_constraintTop_toTopOf="@+id/plasticoAtual" />
 
         <TextView
             android:id="@+id/textViewAcuHora6"
@@ -240,10 +240,10 @@
             android:textColor="#FFFFFF"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/aguaAtual2"
-            app:layout_constraintEnd_toStartOf="@+id/AguaAtual"
+            app:layout_constraintBottom_toBottomOf="@+id/papelAtual"
+            app:layout_constraintEnd_toStartOf="@+id/VidroAtual"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/aguaAtual2" />
+            app:layout_constraintTop_toTopOf="@+id/papelAtual" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

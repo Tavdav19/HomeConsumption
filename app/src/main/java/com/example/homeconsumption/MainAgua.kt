@@ -14,8 +14,6 @@ import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_main_agua.*
-import kotlinx.android.synthetic.main.activity_main_eletricidade.*
-import kotlinx.android.synthetic.main.activity_mensal_agua.*
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -41,7 +39,7 @@ class MainAgua : AppCompatActivity() {
             waterRef.addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     val value = dataSnapshot.getValue(Int::class.java)
-                    AguaAtual.text = value.toString()
+                    VidroAtual.text = value.toString()
                 }
 
                 override fun onCancelled(error: DatabaseError) {
@@ -76,15 +74,15 @@ class MainAgua : AppCompatActivity() {
 
 
                     val data = BarData(barDataSet)
-                    barChartagua.data = data
-                    barChartagua.setTouchEnabled(false)
-                    barChartagua.getLegend().setEnabled(false)
+                    barChartlixo.data = data
+                    barChartlixo.setTouchEnabled(false)
+                    barChartlixo.getLegend().setEnabled(false)
 
 
-                    val description: Description = barChartagua.getDescription()
+                    val description: Description = barChartlixo.getDescription()
                     description.setEnabled(false)
 
-                    val xAxis: XAxis = barChartagua.getXAxis()
+                    val xAxis: XAxis = barChartlixo.getXAxis()
                     xAxis.position = XAxis.XAxisPosition.BOTTOM
                     xAxis.textSize = 10f
                     xAxis.textColor = Color.WHITE
@@ -92,8 +90,8 @@ class MainAgua : AppCompatActivity() {
                     xAxis.setDrawGridLines(false)
                     xAxis.setLabelCount(24, false)
 
-                    val leftAxis: YAxis = barChartagua.getAxisLeft()
-                    barChartagua.getAxisRight().setEnabled(false);
+                    val leftAxis: YAxis = barChartlixo.getAxisLeft()
+                    barChartlixo.getAxisRight().setEnabled(false);
 
                     leftAxis.setTextSize(10f); // set the text size
                     leftAxis.setAxisMinimum(0f); // start at zero
@@ -105,7 +103,7 @@ class MainAgua : AppCompatActivity() {
 
 
                     barDataSet.setDrawValues(false)
-                    barChartagua.animateY(10)
+                    barChartlixo.animateY(10)
 
 
                     horatextView.setVisibility(View.VISIBLE)
