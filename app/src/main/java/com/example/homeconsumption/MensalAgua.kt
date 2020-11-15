@@ -73,7 +73,7 @@ class MensalAgua : AppCompatActivity() {
                     xAxis.textColor = Color.WHITE
                     xAxis.setDrawAxisLine(true)
                     xAxis.setDrawGridLines(false)
-                    xAxis.setLabelCount(31, false)
+                    xAxis.setLabelCount(16, false)
 
                     val leftAxis: YAxis = barChartAguaMensal.getAxisLeft()
                     barChartAguaMensal.getAxisRight().setEnabled(false);

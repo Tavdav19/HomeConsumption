@@ -7,4 +7,9 @@
     <color name="Agua">#25646E</color>
     <color name="Residuos">#656E25</color>
     <color name="Dicas">#7E6EA4</color>
+
+    <color name="Vidro">#00FF22</color>
+    <color name="Plastico">#EEFF00</color>
+    <color name="Papel">#0017E4</color>
+
 </resources>

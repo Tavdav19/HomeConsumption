@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.github.mikephil.charting.components.Description
+import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.components.YAxis
 import com.github.mikephil.charting.data.BarData
@@ -13,9 +14,6 @@ import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.database.*
-import kotlinx.android.synthetic.main.activity_main_agua.*
-import kotlinx.android.synthetic.main.activity_main_eletricidade.*
-import kotlinx.android.synthetic.main.activity_mensal_agua.*
 import kotlinx.android.synthetic.main.activity_mensal_eletricidade.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -71,14 +69,13 @@ class MensalEletricidade : AppCompatActivity() {
 
                     val description: Description = barChartLuzMensal.getDescription()
                     description.setEnabled(false)
-
                     val xAxis: XAxis = barChartLuzMensal.getXAxis()
                     xAxis.position = XAxis.XAxisPosition.BOTTOM
                     xAxis.textSize = 10f
                     xAxis.textColor = Color.WHITE
                     xAxis.setDrawAxisLine(true)
                     xAxis.setDrawGridLines(false)
-                    xAxis.setLabelCount(31, false)
+                    xAxis.setLabelCount(16, false)
 
                     val leftAxis: YAxis = barChartLuzMensal.getAxisLeft()
                     barChartLuzMensal.getAxisRight().setEnabled(false);
@@ -99,7 +96,7 @@ class MensalEletricidade : AppCompatActivity() {
 
                     if (diaInt == y) {
                         if (somahoras != null) {
-                            eletricidadeAcumulado.text = "%.3f".format(somahoras)
+                            vidroAcumulado.text = "%.3f".format(somahoras)
                             precoElemes = (somahoras * 0.1481).toFloat()
                             textViewPrecoEleMensal.text = "%.2f".format(precoElemes)
                         }

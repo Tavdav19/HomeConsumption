@@ -1,11 +1,19 @@
 package com.example.homeconsumption
 
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.NotificationManager.IMPORTANCE_DEFAULT
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.Color.*
+import android.os.Build
 import android.os.Bundle
 import android.view.View.VISIBLE
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
+import androidx.core.app.NotificationManagerCompat.IMPORTANCE_DEFAULT
 import com.github.mikephil.charting.components.Description
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.components.XAxis.XAxisPosition
@@ -46,12 +54,14 @@ class MainEletricidade : AppCompatActivity() {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val value = dataSnapshot.getValue(Int::class.java)
                 EletricidadeAtual.text = value.toString()
+
             }
 
             override fun onCancelled(error: DatabaseError) {
 
             }
         })
+
 
         val sdf = SimpleDateFormat("yyyy-MM-dd")
         val dia: String = sdf.format(Date())
@@ -83,7 +93,7 @@ class MainEletricidade : AppCompatActivity() {
                     xAxis.textColor = Color.WHITE
                     xAxis.setDrawAxisLine(true)
                     xAxis.setDrawGridLines(false)
-                    xAxis.setLabelCount(24, false)
+                    xAxis.setLabelCount(12, false)
                     val leftAxis: YAxis = barChart.getAxisLeft()
                     barChart.getAxisRight().setEnabled(false);
                     leftAxis.setTextSize(10f)
@@ -101,6 +111,7 @@ class MainEletricidade : AppCompatActivity() {
                         if (mediaHora != null) {
                             acumuladoEleHora.text = "%.3f".format(mediaHora)
                             textViewAcuHoraEle.text= "Acumulado "+y+"H"
+
                             precoluz = (mediaHora * 0.1481).toFloat()
                             textViewPrecoLuz.text = "%.2f".format(precoluz)
                         }
@@ -115,4 +126,30 @@ class MainEletricidade : AppCompatActivity() {
                 startActivity(Intent(this, MensalEletricidade::class.java))
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
             }
-    }}
+        /*private fun createNotificationChannel() {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                val id = "example"
+                val name = "Home Consumption"
+                val importance = NotificationManager.IMPORTANCE_DEFAULT
+                val channel = NotificationChannel(id, name, importance).apply {
+                    description ="Consumo excessivo de eletricidade." +
+                            " Veja algumas recomendações na nossa zona de dicas da aplicação."
+                }
+                val notificationManager: NotificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+                notificationManager.createNotificationChannel(channel)
+            }
+        }
+        private fun sendNotification(){
+            val builder = NotificationCompat.Builder(this, "example")
+                .setSmallIcon(R.drawable.ic_launcher_foreground)
+                .setContentTitle("Example Title")
+                .setContentText("Example Description")
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            with(NotificationManagerCompat.from(this)){
+                notify(101,builder.build())
+            }
+        }*/
+    }
+
+
+}
