@@ -101,7 +101,7 @@ class MensalResiduos : AppCompatActivity() {
 
                     val barDataSet = BarDataSet(entries, "")
 
-                    barDataSet.setColors(Color.GREEN,Color.YELLOW,Color.BLUE)
+                    barDataSet.setColors(Color.BLUE,Color.GREEN,Color.YELLOW)
 
 
                     val data = BarData(barDataSet)
